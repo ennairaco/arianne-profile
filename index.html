@@ -1,0 +1,687 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Arianne&#39;s Desk</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Instrument+Sans:wght@400;500;600&display=swap">
+<style>
+/* Layout: a study-room desk scene you can click (cats guard each object), then the same content as a plain scrolling record. */
+:root{
+  --bg:#EEF6F4; --surface:#FFFFFF; --surface-2:#E2EFEC; --ink:#12313A; --ink-2:#48646B; --line:#C5D9D5;
+  --accent:#D9486A; --accent-ink:#FFFFFF; --gold:#E9A91F; --teal:#1F7A78;
+  --wall:#CFE6E1; --wall-2:#BBD9D3; --wood:#C98F5E; --wood-2:#A9713F; --wood-3:#8A5930; --floor:#B5CFCA;
+  --sky:#FBE3B8; --sky-2:#F7C5A0; --board:#FBFDFC; --paper:#FFFDF6; --metal:#5D7379; --screen:#17363F;
+  --shadow:0 1px 0 rgba(18,49,58,.06),0 10px 30px -12px rgba(18,49,58,.25);
+  --display:"Bricolage Grotesque","Trebuchet MS",system-ui,sans-serif;
+  --body:"Instrument Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"Instrument Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+  --bg:#0E2025; --surface:#163036; --surface-2:#1C3A41; --ink:#E9F3F1; --ink-2:#A3BDBA; --line:#2C4C53;
+  --accent:#FF7C98; --accent-ink:#2A0A14; --gold:#F4C04E; --teal:#6FD0C8;
+  --wall:#1D3D44; --wall-2:#17343A; --wood:#9A6A43; --wood-2:#7C5232; --wood-3:#5F3D24; --floor:#132B30;
+  --sky:#1B2B52; --sky-2:#2B3F73; --board:#E6EFED; --paper:#F3EFE2; --metal:#8AA3A8; --screen:#0B1B20;
+  --shadow:0 1px 0 rgba(0,0,0,.2),0 14px 34px -14px rgba(0,0,0,.6); color-scheme:dark } }
+:root[data-theme="dark"]{
+  --bg:#0E2025; --surface:#163036; --surface-2:#1C3A41; --ink:#E9F3F1; --ink-2:#A3BDBA; --line:#2C4C53;
+  --accent:#FF7C98; --accent-ink:#2A0A14; --gold:#F4C04E; --teal:#6FD0C8;
+  --wall:#1D3D44; --wall-2:#17343A; --wood:#9A6A43; --wood-2:#7C5232; --wood-3:#5F3D24; --floor:#132B30;
+  --sky:#1B2B52; --sky-2:#2B3F73; --board:#E6EFED; --paper:#F3EFE2; --metal:#8AA3A8; --screen:#0B1B20;
+  --shadow:0 1px 0 rgba(0,0,0,.2),0 14px 34px -14px rgba(0,0,0,.6); color-scheme:dark }
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:76px}
+body{background:var(--bg);color:var(--ink);font:400 16px/1.6 var(--body);-webkit-font-smoothing:antialiased}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
+a{color:inherit}
+h1,h2,h3{font-family:var(--display);line-height:1.08;margin:0;text-wrap:balance;letter-spacing:-.01em}
+p{margin:0}
+.wrap{max-width:1120px;margin-inline:auto;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
+.mono{font-family:var(--mono);font-weight:600;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-2)}
+:focus-visible{outline:3px solid var(--accent);outline-offset:3px;border-radius:6px}
+
+/* header */
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:9;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.top .wrap{display:flex;align-items:center;gap:20px;padding-block:12px}
+.brand{display:flex;align-items:center;gap:10px;font:700 17px var(--display);text-decoration:none}
+.brand svg{width:34px;height:34px;flex:none}
+.nav{display:flex;gap:2px;margin-left:auto;min-width:0}
+.nav a{font-size:14px;font-weight:500;text-decoration:none;color:var(--ink-2);padding:6px 11px;border-radius:999px;white-space:nowrap}
+.nav a[aria-current="page"]{background:var(--ink);color:var(--bg)}
+.nav a:not([aria-current]):hover{background:var(--surface-2);color:var(--ink)}
+.btn{display:inline-flex;align-items:center;gap:8px;font:600 15px var(--body);padding:11px 18px;border-radius:999px;border:1.5px solid var(--ink);background:transparent;color:var(--ink);cursor:pointer;text-decoration:none}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.btn:hover{transform:translateY(-1px)}
+.btn.sm{padding:7px 13px;font-size:13px}
+@media (max-width:900px){.top .wrap{flex-wrap:wrap;gap:8px;padding-block:10px 8px}.nav{margin-left:0;width:100%;overflow-x:auto;scrollbar-width:none;padding-bottom:2px}.nav::-webkit-scrollbar{display:none}}
+
+/* hero */
+.hero{padding-block:36px 8px}
+.status{display:flex;flex-wrap:wrap;gap:6px 14px;align-items:center}
+.dot{width:9px;height:9px;border-radius:50%;background:var(--gold);box-shadow:0 0 0 4px color-mix(in srgb,var(--gold) 25%,transparent)}
+.hero h1{font-size:clamp(32px,4.7vw,54px);font-weight:800;margin-top:14px;max-width:17ch}
+.hero h1 em{font-style:normal;color:var(--accent)}
+.hero .lede{font-size:clamp(16px,1.6vw,19px);color:var(--ink-2);max-width:60ch;margin-top:14px}
+.cta{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
+
+.herotop{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,370px);grid-template-areas:"t p" "t g";grid-template-rows:auto 1fr;gap:22px 44px;align-items:start}
+.herotop .txt{grid-area:t;min-width:0}
+.herotop .polaroid{grid-area:p;justify-self:center}
+.glance{grid-area:g;background:var(--surface);border:1.5px solid var(--ink);border-radius:18px;overflow:hidden;box-shadow:var(--shadow)}
+.glance .gh{display:flex;justify-content:space-between;gap:10px;padding:12px 18px;background:var(--surface-2)}
+.glance button{appearance:none;display:grid;grid-template-columns:96px minmax(0,1fr) auto;gap:10px;align-items:baseline;width:100%;text-align:left;background:none;border:0;border-top:1px solid var(--line);padding:11px 18px;font:400 14.5px/1.35 var(--body);color:var(--ink);cursor:pointer}
+.glance button:hover{background:var(--surface-2)}
+.glance button b{font:600 12px var(--body);letter-spacing:.07em;text-transform:uppercase;color:var(--ink-2)}
+.glance button i{font-style:normal;color:var(--accent);font-weight:700}
+dl.facts{margin:26px 0 0;border-top:1px solid var(--line);padding-top:16px;display:grid;grid-template-columns:auto minmax(0,1fr);gap:10px 22px;font-size:15px}
+dl.facts dt{font:600 12px var(--body);letter-spacing:.08em;text-transform:uppercase;color:var(--ink-2);padding-top:3px}
+dl.facts dd{margin:0;min-width:0;display:flex;flex-wrap:wrap;gap:4px 8px;align-items:center}
+dl.facts dd span{min-width:0;overflow-wrap:anywhere}
+dl.facts dd span:not(:last-child)::after{content:"·";margin-left:8px;color:var(--ink-2)}
+dl.facts .lnk{background:none;border:0;padding:0;font:inherit;color:var(--ink);text-decoration:underline;text-underline-offset:3px;cursor:pointer}
+.deskhead{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:end;gap:6px 20px;margin-top:40px}
+.deskhead h2{font-size:clamp(22px,2.6vw,28px);font-weight:700}
+.deskhead p{color:var(--ink-2);font-size:15px}
+.scene{margin-top:14px}
+main.routed .view{display:none}
+main.routed .view.on{display:block}
+main.routed section.view{padding-block:30px 0}
+.catbar{display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px;justify-content:space-between;margin-bottom:22px;padding:8px 14px 8px 8px;background:var(--surface);border:1.5px solid var(--line);border-radius:999px}
+.catbar .who{display:flex;align-items:center;gap:10px;min-width:0;font-size:14.5px;color:var(--ink-2)}
+.catbar svg{width:38px;height:42px;flex:none}
+.catbar a{font:600 14px var(--body);text-decoration:none;white-space:nowrap;padding:6px 12px;border-radius:999px;background:var(--surface-2)}
+.polaroid{margin:8px 0 0;width:186px;background:var(--paper);padding:10px 10px 12px;border:1.5px solid var(--ink);border-radius:6px;transform:rotate(3deg);box-shadow:var(--shadow);position:relative}
+.polaroid::before{content:"";position:absolute;top:-13px;left:50%;width:86px;height:24px;margin-left:-43px;background:color-mix(in srgb,var(--gold) 70%,transparent);transform:rotate(-4deg)}
+.polaroid img{display:block;width:100%;height:auto;aspect-ratio:5/6;object-fit:cover;border-radius:2px}
+.polaroid figcaption{font:700 15px var(--display);text-align:center;color:#12313A;padding-top:9px}
+@media (max-width:860px){.herotop{grid-template-columns:1fr;grid-template-areas:"p" "t" "g";gap:18px}.herotop .polaroid{justify-self:start}.polaroid{width:128px;margin:6px 0 0 6px;padding:6px 6px 8px}.polaroid figcaption{font-size:11px;padding-top:5px}}
+.lane{display:grid;grid-template-columns:auto minmax(0,1fr);gap:4px 14px;align-items:center}
+.lane .ic{width:46px;height:46px;border-radius:14px;display:grid;place-items:center;background:var(--surface-2);border:1.5px solid var(--line);grid-row:span 2}
+.lane .ic svg{width:24px;height:24px;stroke:var(--accent);fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.lane+ul.pts{margin-top:16px}
+.wide{grid-column:1/-1}
+.scroll{overflow-x:auto;border:1.5px solid var(--line);border-radius:18px;background:var(--surface);margin-top:16px}
+table.dt{width:100%;min-width:720px;border-collapse:collapse;font-size:15px}
+table.dt th{text-align:left;font:600 12px var(--body);letter-spacing:.08em;text-transform:uppercase;color:var(--ink-2);padding:13px 18px;background:var(--surface-2)}
+table.dt td{padding:13px 18px;border-top:1px solid var(--line);vertical-align:top}
+table.dt td:first-child{font-weight:600}
+table.dt td.when{color:var(--ink-2);white-space:nowrap;font-variant-numeric:tabular-nums}
+.tagr{display:inline-block;font:600 13px var(--body);padding:3px 10px;border-radius:999px;background:color-mix(in srgb,var(--gold) 38%,var(--surface));color:var(--ink)}
+.tagr.p{background:color-mix(in srgb,var(--accent) 22%,var(--surface))}
+.rbar{display:flex;flex-wrap:wrap;gap:10px 16px;align-items:center;justify-content:space-between;margin-bottom:14px}
+.rbar p{color:var(--ink-2);font-size:14.5px}
+.sheet{background:#fff;border:1.5px solid var(--ink);border-radius:10px;overflow:hidden;box-shadow:var(--shadow);max-width:860px;margin-inline:auto}
+.sheet img{display:block;width:100%;height:auto}
+.also{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:14px 28px;margin-top:4px}
+.also b{display:block}
+.also span{color:var(--ink-2);font-size:14.5px}
+/* desk scene */
+.scene{position:relative;margin-top:28px;border-radius:26px;overflow:hidden;border:1.5px solid var(--ink);box-shadow:var(--shadow);background:var(--wall)}
+.scene svg{display:block;width:100%;height:auto}
+.wall{fill:var(--wall)} .wall2{fill:var(--wall-2)} .floor{fill:var(--floor)} .wood{fill:var(--wood)} .wood2{fill:var(--wood-2)} .wood3{fill:var(--wood-3)}
+.sky{fill:var(--sky)} .sky2{fill:var(--sky-2)} .board{fill:var(--board)} .paper{fill:var(--paper)} .metal{fill:var(--metal)} .screen{fill:var(--screen)}
+.inkf{fill:#12313A} .inks{stroke:#12313A;fill:none;stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
+.accentf{fill:var(--accent)} .goldf{fill:var(--gold)} .tealf{fill:var(--teal)} .surf{fill:var(--surface)}
+.hot{cursor:pointer;transform-box:fill-box;transform-origin:50% 100%;transition:transform .18s ease}
+.hot:hover,.hot:focus-visible{transform:translateY(-6px) scale(1.02)}
+.hot:focus-visible{outline:none}
+.hot:focus-visible .ring,.hot:hover .ring{opacity:1}
+.ring{opacity:0;fill:none;stroke:var(--accent);stroke-width:4;stroke-dasharray:2 9;stroke-linecap:round;transition:opacity .15s}
+.tag rect{fill:var(--surface);stroke:#12313A;stroke-width:2}
+.tag text{font:500 13px var(--mono);letter-spacing:.06em;fill:var(--ink);text-transform:uppercase}
+.cat{cursor:pointer}
+.tail{transform-box:fill-box;transform-origin:0% 100%;animation:sway 3.2s ease-in-out infinite alternate}
+.eye{transform-box:fill-box;transform-origin:50% 50%;animation:blink 5s infinite}
+.cat:nth-of-type(2n) .eye{animation-delay:1.7s}
+@keyframes sway{from{transform:rotate(-7deg)}to{transform:rotate(9deg)}}
+@keyframes blink{0%,94%,100%{transform:scaleY(1)}97%{transform:scaleY(.1)}}
+.hop{animation:hop .45s ease}
+@keyframes hop{40%{transform:translateY(-14px)}}
+.bubble{position:absolute;left:46.5%;bottom:54%;max-width:21%;min-width:190px;background:var(--surface);color:var(--ink);border:1.5px solid var(--ink);border-radius:16px;padding:10px 14px;font-size:14.5px;line-height:1.4;box-shadow:var(--shadow)}
+.bubble::after{content:"";position:absolute;left:80%;bottom:-9px;width:16px;height:16px;background:var(--surface);border-right:1.5px solid var(--ink);border-bottom:1.5px solid var(--ink);transform:rotate(45deg)}
+.bubble b{font-family:var(--display)}
+@media (max-width:640px){
+  .scene{border-radius:18px}
+  .bubble{position:static;max-width:none;min-width:0;border-width:0;border-top:1.5px solid var(--ink);border-radius:0;box-shadow:none}
+  .bubble::after{display:none}
+  .tag{display:none}
+}
+@media (prefers-reduced-motion:reduce){.tail,.eye,.hop{animation:none}.hot,.btn{transition:none}html{scroll-behavior:auto}}
+
+.pick{margin-top:18px}
+.chips{display:grid;grid-template-columns:repeat(auto-fit,minmax(138px,1fr));gap:10px;margin-top:10px}
+.chip{appearance:none;text-align:left;background:var(--surface);color:var(--ink);border:1.5px solid var(--line);border-radius:14px;padding:11px 14px;cursor:pointer;font:700 16px var(--display)}
+.chip span{display:block;font:500 11px var(--mono);letter-spacing:.09em;text-transform:uppercase;color:var(--ink-2);margin-top:3px}
+.chip:hover{border-color:var(--ink);transform:translateY(-2px)}
+
+/* sections */
+section.block{padding-block:56px 0}
+.head{display:flex;flex-wrap:wrap;align-items:end;justify-content:space-between;gap:10px 24px;margin-bottom:22px}
+.head h2{font-size:clamp(28px,3.6vw,40px);font-weight:700}
+.head p{color:var(--ink-2);max-width:52ch}
+.card{background:var(--surface);border:1.5px solid var(--line);border-radius:18px;padding:22px}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,440px),1fr));gap:16px}
+.grid2>*{min-width:0}
+.card h3{font-size:21px;font-weight:700}
+.meta{display:flex;flex-wrap:wrap;gap:4px 12px;margin-top:6px}
+.card p.d{color:var(--ink-2);margin-top:10px}
+ul.pts{margin:12px 0 0;padding:0;list-style:none;display:grid;gap:9px}
+ul.pts li{padding-left:22px;position:relative}
+ul.pts li{padding-left:26px}
+ul.pts li::before{content:"";position:absolute;left:0;top:.22em;width:16px;height:16px;background:var(--accent);-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 11.500c3.300 0 6.200 2.700 6.200 5.800 0 2.200-1.600 3.400-3.400 3.400-1.100 0-1.800-.5-2.800-.5s-1.700.5-2.800.5c-1.800 0-3.400-1.200-3.400-3.400 0-3.100 2.900-5.800 6.200-5.800z'/%3E%3Cellipse cx='4.300' cy='10.300' rx='2.100' ry='2.900' transform='rotate(-22 4.300 10.300)'/%3E%3Cellipse cx='9' cy='5.600' rx='2.200' ry='3.100' transform='rotate(-8 9 5.600)'/%3E%3Cellipse cx='15' cy='5.600' rx='2.200' ry='3.100' transform='rotate(8 15 5.600)'/%3E%3Cellipse cx='19.700' cy='10.300' rx='2.100' ry='2.900' transform='rotate(22 19.700 10.300)'/%3E%3C/svg%3E") center/contain no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 11.500c3.300 0 6.200 2.700 6.200 5.800 0 2.200-1.600 3.400-3.400 3.400-1.100 0-1.800-.5-2.800-.5s-1.700.5-2.800.5c-1.800 0-3.400-1.200-3.400-3.400 0-3.100 2.900-5.800 6.200-5.800z'/%3E%3Cellipse cx='4.300' cy='10.300' rx='2.100' ry='2.900' transform='rotate(-22 4.300 10.300)'/%3E%3Cellipse cx='9' cy='5.600' rx='2.200' ry='3.100' transform='rotate(-8 9 5.600)'/%3E%3Cellipse cx='15' cy='5.600' rx='2.200' ry='3.100' transform='rotate(8 15 5.600)'/%3E%3Cellipse cx='19.700' cy='10.300' rx='2.100' ry='2.900' transform='rotate(22 19.700 10.300)'/%3E%3C/svg%3E") center/contain no-repeat}
+b.n{font-weight:600;color:var(--ink);background:linear-gradient(transparent 62%,color-mix(in srgb,var(--gold) 55%,transparent) 0)}
+.pills{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px}
+.pill{font:500 13px var(--body);padding:4px 9px;border-radius:999px;background:var(--surface-2);color:var(--ink)}
+.pill.live{background:color-mix(in srgb,var(--teal) 18%,var(--surface));}
+
+/* before → after */
+.ba{background:var(--surface);border:1.5px solid var(--ink);border-radius:18px;overflow:hidden;box-shadow:var(--shadow)}
+.ba .row{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr) 28px minmax(0,1fr);gap:14px;align-items:center;padding:15px 22px;border-top:1px solid var(--line)}
+.ba .row:first-child{border-top:0;background:var(--surface-2)}
+.ba .what{font-weight:600}
+.ba .what small{display:block;font-weight:400;color:var(--ink-2);font-size:13.5px}
+.ba .from{font:400 15px var(--body);color:var(--ink-2)}
+.ba .to{font:600 15px var(--body);color:var(--ink)}
+.ba .arr{color:var(--accent);font-weight:700}
+@media (max-width:640px){.ba .row{grid-template-columns:1fr;gap:3px}.ba .arr{display:none}.ba .to::before{content:"→ ";color:var(--accent)}.ba .row:first-child{display:none}}
+
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:0;margin-top:18px;border:1.5px solid var(--line);border-radius:18px;overflow:hidden;background:var(--surface)}
+.stat{padding:20px 22px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);margin:0 -1px -1px 0}
+.stat b{display:block;font:800 34px/1 var(--display);font-variant-numeric:tabular-nums}
+.stat span{display:block;color:var(--ink-2);font-size:14.5px;margin-top:8px}
+
+/* timeline */
+.tl{display:grid;gap:16px}
+.role{display:grid;grid-template-columns:190px minmax(0,1fr);gap:8px 28px;background:var(--surface);border:1.5px solid var(--line);border-radius:18px;padding:22px}
+.role .side .org{font:700 17px/1.25 var(--display)}
+.role .side .mono{display:block;margin-top:6px}
+.role h3{font-size:19px}
+.role h3+ul.pts{margin-top:10px}
+.role .sub{margin-top:18px}
+@media (max-width:720px){.role{grid-template-columns:1fr}}
+
+.win{display:grid;grid-template-columns:auto minmax(0,1fr);gap:16px;align-items:start}
+.medal{width:54px;height:54px;border-radius:50%;display:grid;place-items:center;font:800 15px var(--display);background:var(--gold);color:#3A2800;border:1.5px solid var(--ink)}
+.medal.plain{background:var(--surface-2);color:var(--ink);border-color:var(--line)}
+.result{font:700 17px var(--display)}
+
+.about{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:16px}
+@media (max-width:820px){.about{grid-template-columns:1fr}}
+dl.kv{margin:12px 0 0;display:grid;grid-template-columns:auto minmax(0,1fr);gap:8px 18px}
+dl.kv dt{font:500 12px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--ink-2);padding-top:3px}
+dl.kv dd{margin:0}
+
+.contact{display:grid;gap:12px}
+.line{display:flex;flex-wrap:wrap;align-items:center;gap:10px 16px;justify-content:space-between;background:var(--surface);border:1.5px solid var(--line);border-radius:14px;padding:14px 18px}
+.line .v{font:600 16px var(--body);overflow-wrap:anywhere;user-select:all;min-width:0}
+
+.crew{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+.crew .card{display:grid;grid-template-columns:64px minmax(0,1fr);gap:12px;align-items:center;padding:14px 16px}
+.crew svg{width:64px;height:72px}
+.crew b{font:700 17px var(--display)}
+.crew span{display:block;color:var(--ink-2);font-size:14px;line-height:1.4}
+footer{padding-block:44px 56px;color:var(--ink-2);font-size:14px}
+
+/* panel */
+dialog{border:1.5px solid var(--ink);border-radius:22px;padding:0;background:var(--bg);color:var(--ink);width:min(880px,calc(100vw - 24px));max-height:min(86vh,900px);box-shadow:0 30px 80px -20px rgba(0,0,0,.5)}
+dialog::backdrop{background:rgba(10,28,33,.55);backdrop-filter:blur(3px)}
+.dhead{position:sticky;top:0;z-index:1;display:flex;align-items:center;gap:12px;justify-content:space-between;padding:14px 20px;background:var(--surface);border-bottom:1.5px solid var(--ink)}
+.dhead .who{display:flex;align-items:center;gap:10px;min-width:0}
+.dhead svg{width:40px;height:44px;flex:none}
+.dhead p{font-size:14px;color:var(--ink-2);line-height:1.35}
+.dbody{padding:22px 20px 28px}
+.dbody section.block{padding-block:0}
+.x{appearance:none;border:1.5px solid var(--ink);background:var(--bg);color:var(--ink);width:38px;height:38px;border-radius:50%;font-size:18px;cursor:pointer;flex:none}
+
+/* phone and tablet fixes */
+@media (max-width:900px){
+  .bubble{position:static;max-width:none;min-width:0;border-width:0;border-top:1.5px solid var(--ink);border-radius:0;box-shadow:none}
+  .bubble::after{display:none}
+}
+@media (max-width:640px){
+  html{scroll-padding-top:110px}
+  .hero{padding-block:22px 8px}
+  .herotop .polaroid{justify-self:center;width:150px;transform:rotate(-2deg)}
+  .status{align-items:flex-start}
+  .status .dot{margin-top:4px}
+  dl.facts{grid-template-columns:1fr;gap:2px}
+  dl.facts dt{padding-top:12px}
+  dl.facts dd{display:block}
+  dl.facts dd span{display:block;padding:2px 0}
+  dl.facts dd span:not(:last-child)::after{content:none}
+  dl.facts dd span:has(.lnk),dl.facts dd span:has(a){display:inline-block;margin-right:16px}
+  .glance button{grid-template-columns:minmax(0,1fr) auto;gap:2px 10px}
+  .glance button b{grid-column:1/-1}
+  .deskhead{margin-top:30px}
+  .chips{grid-template-columns:1fr 1fr}
+  .catbar{border-radius:16px;padding:10px 12px;flex-wrap:nowrap;align-items:center;gap:10px}
+  .catbar .who{font-size:13.5px;line-height:1.35}
+  .catbar .who svg{width:32px;height:36px}
+  .catbar a{font-size:13px;padding:6px 10px}
+  .catbar a .long{display:none}
+  main.routed section.view{padding-block:18px 0}
+  .head{margin-bottom:16px}
+  .card,.role{padding:18px 16px}
+  .win{grid-template-columns:1fr;gap:10px}
+  .medal{width:46px;height:46px;font-size:14px}
+  .lane .ic{width:40px;height:40px;border-radius:12px}
+  dl.kv{grid-template-columns:1fr;gap:2px}
+  dl.kv dt{padding-top:10px}
+  .line{padding:12px 14px}
+  .scroll{border:0;background:none;overflow:visible;border-radius:0}
+  table.dt{min-width:0;display:block}
+  table.dt thead{display:none}
+  table.dt tbody{display:grid;gap:10px}
+  table.dt tr{display:block;background:var(--surface);border:1.5px solid var(--line);border-radius:14px;padding:12px 14px}
+  table.dt td{display:block;border:0;padding:2px 0}
+  table.dt td:empty{display:none}
+  table.dt td:first-child{font-size:16px;padding-bottom:4px}
+  table.dt td.when{font-size:13px;padding-top:4px}
+  table.dt td:nth-child(3)::before{content:"Break: ";color:var(--ink-2)}
+  table.dt td:nth-child(4)::before{content:"Speaker award: ";color:var(--ink-2)}
+}
+
+section.block{padding-block:64px 0}
+@media (min-width:641px){.pick{display:none}}
+.role .jobs{display:grid;gap:14px}
+.job h3{font-size:17.5px}
+.job .mono{display:block;margin-top:4px}
+.job p{color:var(--ink-2);margin-top:4px}
+.split{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.3fr);gap:24px;align-items:center;margin-bottom:16px}
+.shot{margin:0;border:1.5px solid var(--line);border-radius:12px;overflow:hidden;background:var(--surface-2)}
+.shot img{display:block;width:100%;height:auto}
+.shot figcaption{font-size:13px;color:var(--ink-2);padding:8px 12px}
+.grid3{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:16px}
+.grid3>*{min-width:0}
+.pgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;margin-top:16px}
+@media (max-width:820px){.pgrid{grid-template-columns:1fr}}
+.pj{display:flex;flex-direction:column;min-width:0}
+.pj .shot{margin:0 0 18px}
+.pj .shot img{aspect-ratio:1500/801;object-fit:cover;object-position:top left}
+.pj .pills{margin-top:auto;padding-top:14px}
+.head.sub2{margin:34px 0 14px}
+.head.sub2 h3{font-size:24px}
+.tl .about{margin-top:4px}
+@media (max-width:820px){.split{grid-template-columns:1fr}}
+@media (max-width:640px){section.block{padding-block:44px 0}}
+</style>
+
+<header class="top"><div class="wrap">
+  <a class="brand" href="#desk" aria-label="Arianne Co, back to the desk">
+    <svg viewBox="0 0 34 34" aria-hidden="true"><path d="M4 12 6 2l8 6h6l8-6 2 10v12a8 8 0 0 1-8 8H12a8 8 0 0 1-8-8z" class="accentf"/><text x="17" y="25" text-anchor="middle" font-family="Bricolage Grotesque,sans-serif" font-weight="800" font-size="17" fill="#fff">A</text></svg>
+    Arianne Co</a>
+  <nav class="nav" aria-label="Sections">
+    <a href="#desk">Home</a><a href="#experience">Experience</a><a href="#systems">Projects</a><a href="#cases">Awards</a><a href="#resume">Résumé</a>
+  </nav>
+  <button class="btn primary sm" data-open="contact">Get in touch</button>
+</div></header>
+
+<main>
+<div class="wrap hero view" id="desk">
+  <div class="herotop"><div class="txt">
+  <div class="status mono"><span class="dot" aria-hidden="true"></span><span>Open to internships in consulting, operations, and project management</span><span id="clock">Manila</span></div>
+  <h1>Arianne Co lands partners, leads teams, and builds the <em>systems behind them</em></h1>
+  <p class="lede">Management Engineering sophomore at Ateneo de Manila. She leads External Relations for Ateneo MEA and builds operations systems at Ritual Matcha Co., a B2B matcha supplier to 500+ cafés.</p>
+  <div class="cta"><button class="btn primary" data-open="contact">Get in touch</button><button class="btn" data-open="resume">See her résumé</button></div>
+  <dl class="facts">
+    <dt>Looking for</dt><dd><span>Consulting</span><span>Operations</span><span>Project management</span></dd>
+    <dt>Now</dt><dd><span>AVP for External Relations, Ateneo MEA</span><span>Sales Operations Consultant, Ritual Matcha Co.</span><span>Project Manager, Ateneo Celadon</span></dd>
+    <dt>Good at</dt><dd><span>Partnerships and negotiation</span><span>Leading teams</span><span>Running projects</span><span>Process automation</span></dd>
+    <dt>Reach</dt><dd><span>arianne.gabrielle.co@student.ateneo.edu</span><span><button class="lnk" data-copy="arianne.gabrielle.co@student.ateneo.edu">Copy</button></span><span><a href="https://www.linkedin.com/in/arianne-co" target="_blank" rel="noopener">LinkedIn</a></span></dd>
+  </dl>
+  </div>
+  <figure class="polaroid"><img src="arianne.jpg" alt="Portrait of Arianne Co" width="480" height="576"><figcaption>Arianne Co</figcaption></figure>
+  <div class="glance">
+    <div class="gh mono"><span>At a glance</span><span>tap to jump</span></div>
+    <button data-open="changed"><b>Partners</b><span>Leads External Relations for Ateneo MEA</span><i>→</i></button>
+    <button data-open="experience"><b>Leadership</b><span>Vice President of a 35-organization student council</span><i>→</i></button>
+    <button data-open="experience"><b>Projects</b><span>Ran Celadon's Recruitment Week and Rose Sale</span><i>→</i></button>
+    <button data-open="systems"><b>Systems</b><span>Built Ritual Matcha's Order Desk</span><i>→</i></button>
+    <button data-open="cases"><b>Case comps</b><span>1st Runner-Up, Fusion 2026</span><i>→</i></button>
+    <button data-open="debate"><b>Debate</b><span>7th Best Senior Speaker in Asia</span><i>→</i></button>
+    <button data-open="about"><b>School</b><span>Consistent Dean's Lister, QPI 3.66</span><i>→</i></button>
+  </div></div>
+
+  <div class="deskhead"><h2>Or look around her desk</h2><p>Every object jumps to a part of her record.</p></div>
+  <div class="scene">
+    <svg id="sceneSvg" viewBox="0 0 1200 620" role="group" aria-label="Arianne's desk. Each object opens a part of her record.">
+      <rect class="wall" width="1200" height="620"/>
+      <g class="wall2"><circle cx="330" cy="330" r="5"/><circle cx="748" cy="96" r="5"/><circle cx="1160" cy="80" r="5"/><circle cx="60" cy="330" r="5"/><circle cx="1150" cy="330" r="5"/><circle cx="740" cy="300" r="5"/></g>
+      <rect class="floor" y="560" width="1200" height="60"/>
+      <!-- window -->
+      <g><rect x="64" y="46" width="232" height="216" rx="14" class="inkf"/><rect x="74" y="56" width="212" height="196" rx="8" class="sky"/><rect x="74" y="170" width="212" height="82" class="sky2"/><circle cx="232" cy="104" r="22" class="goldf"/>
+        <path d="M74 252v-50h26v-22h30v34h22v-56h34v44h24v-28h30v38h46v40z" class="tealf" opacity=".55"/><path d="M180 56v196M74 150h212" class="inks"/></g>
+      <!-- whiteboard: experience -->
+      <g class="hot" tabindex="0" role="button" data-open="experience" aria-label="Whiteboard: experience and leadership">
+        <rect class="ring" x="352" y="36" width="364" height="232" rx="18"/>
+        <rect x="362" y="46" width="344" height="212" rx="10" class="metal"/><rect x="372" y="56" width="324" height="192" rx="5" class="board"/>
+        <path d="M400 150h268" class="inks"/><g class="inkf"><circle cx="412" cy="150" r="7"/><circle cx="496" cy="150" r="7"/><circle cx="580" cy="150" r="7"/></g><circle cx="656" cy="150" r="9" class="accentf"/>
+        <rect x="396" y="96" width="74" height="14" rx="7" class="tealf"/><rect x="480" y="176" width="92" height="14" rx="7" class="goldf"/><rect x="566" y="96" width="98" height="14" rx="7" class="accentf"/><rect x="396" y="200" width="56" height="10" rx="5" class="metal"/><rect x="396" y="76" width="120" height="10" rx="5" class="inkf"/>
+        <g class="tag"><rect x="546" y="62" width="142" height="26" rx="13"/><text x="617" y="80" text-anchor="middle">Experience</text></g>
+      </g>
+      <!-- shelf: trophies -->
+      <rect x="770" y="214" width="390" height="16" rx="5" class="wood2"/><path d="M800 230v26M1130 230v26" stroke="#12313A" stroke-width="6" stroke-linecap="round"/>
+      <g class="hot" tabindex="0" role="button" data-open="cases" aria-label="Trophy shelf: case competitions">
+        <rect class="ring" x="782" y="98" width="214" height="122" rx="18"/>
+        <g class="goldf" stroke="#12313A" stroke-width="3" stroke-linejoin="round"><path d="M808 124h44v26a22 22 0 0 1-44 0z"/><path d="M822 172h16v22h-16z"/><rect x="810" y="194" width="40" height="20" rx="3"/><path d="M808 132h-12a12 12 0 0 0 12 20M852 132h12a12 12 0 0 1-12 20" fill="none"/></g>
+        <g fill="#C9D3D6" stroke="#12313A" stroke-width="3" stroke-linejoin="round"><path d="M880 142h36v20a18 18 0 0 1-36 0z"/><path d="M892 180h12v16h-12z"/><rect x="882" y="196" width="32" height="18" rx="3"/></g>
+        <g class="accentf" stroke="#12313A" stroke-width="3" stroke-linejoin="round"><path d="M958 196l-16-34 16-22 16 22z"/><rect x="942" y="196" width="32" height="18" rx="3"/></g>
+        <g class="tag"><rect x="806" y="92" width="170" height="26" rx="13"/><text x="891" y="110" text-anchor="middle">Case comps</text></g>
+      </g>
+      <g id="catPitch"></g>
+      <!-- desk -->
+      <path d="M40 432h1120l24 44H16z" class="wood"/><rect x="16" y="476" width="1168" height="34" rx="6" class="wood2"/><rect x="70" y="510" width="34" height="110" class="wood3"/><rect x="1096" y="510" width="34" height="110" class="wood3"/>
+      <!-- lamp -->
+      <g><path d="M112 432h76" stroke="#12313A" stroke-width="12" stroke-linecap="round"/><path d="M150 430V330l52-38" class="inks" style="stroke-width:7"/><path d="M178 262l66 26-26 44-62-34z" class="tealf" stroke="#12313A" stroke-width="3" stroke-linejoin="round"/></g>
+      <!-- notebook: about -->
+      <g class="hot" tabindex="0" role="button" data-open="about" aria-label="Notebook: about and education">
+        <rect class="ring" x="196" y="388" width="176" height="70" rx="16"/>
+        <path d="M214 440l22-40h124l-18 40z" class="accentf" stroke="#12313A" stroke-width="3" stroke-linejoin="round"/><path d="M222 446h124l-4-6H218z" class="paper" stroke="#12313A" stroke-width="3" stroke-linejoin="round"/><path d="M262 412h62M256 424h44" stroke="#fff" stroke-width="4" stroke-linecap="round"/>
+        <g class="tag"><rect x="238" y="362" width="92" height="26" rx="13"/><text x="284" y="380" text-anchor="middle">About</text></g>
+      </g>
+      <!-- laptop: systems -->
+      <g class="hot" tabindex="0" role="button" data-open="systems" aria-label="Laptop: projects she built">
+        <rect class="ring" x="392" y="268" width="252" height="188" rx="18"/>
+        <rect x="408" y="286" width="220" height="140" rx="10" class="inkf"/><rect x="418" y="296" width="200" height="120" rx="4" class="screen"/>
+        <g><rect x="432" y="312" width="52" height="8" rx="4" class="accentf"/><rect x="432" y="330" width="96" height="8" rx="4" class="goldf"/><rect x="446" y="348" width="70" height="8" rx="4" fill="#7FD7CF"/><rect x="446" y="366" width="110" height="8" rx="4" fill="#E9F3F1"/><rect x="432" y="384" width="62" height="8" rx="4" class="goldf"/><rect x="540" y="312" width="64" height="44" rx="5" fill="none" stroke="#7FD7CF" stroke-width="3"/><path d="M548 346l14-14 12 8 20-18" fill="none" stroke="#7FD7CF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></g>
+        <path d="M388 446l20-20h220l20 20z" class="metal" stroke="#12313A" stroke-width="3" stroke-linejoin="round"/>
+        <g class="tag"><rect x="454" y="452" width="130" height="26" rx="13"/><text x="519" y="470" text-anchor="middle">Systems</text></g>
+      </g>
+      <g id="catAbacus"></g>
+      <!-- phone: contact -->
+      <g class="hot" tabindex="0" role="button" data-open="contact" aria-label="Phone: contact">
+        <rect class="ring" x="652" y="388" width="78" height="72" rx="16"/>
+        <path d="M672 446l10-46h38l-8 46z" class="inkf"/><path d="M679 440l7-34h26l-6 34z" class="tealf"/><circle cx="696" cy="420" r="6" fill="#fff"/>
+        <g class="tag"><rect x="640" y="462" width="104" height="26" rx="13"/><text x="692" y="480" text-anchor="middle">Contact</text></g>
+      </g>
+      <!-- microphone: debate -->
+      <g class="hot" tabindex="0" role="button" data-open="debate" aria-label="Microphone: debate career">
+        <rect class="ring" x="902" y="284" width="92" height="172" rx="18"/>
+        <path d="M920 446h56" stroke="#12313A" stroke-width="12" stroke-linecap="round"/><path d="M948 444V352" class="inks" style="stroke-width:7"/><path d="M926 356a22 22 0 0 0 44 0" class="inks" style="stroke-width:5"/><rect x="932" y="296" width="32" height="62" rx="16" class="metal" stroke="#12313A" stroke-width="3"/><path d="M938 314h20M938 326h20M938 338h20" stroke="#12313A" stroke-width="2.5"/>
+        <g class="tag"><rect x="900" y="462" width="96" height="26" rx="13"/><text x="948" y="480" text-anchor="middle">Debate</text></g>
+      </g>
+      <g id="catRebuttal"></g>
+      <!-- résumé sheet -->
+      <g class="hot" tabindex="0" role="button" data-open="resume" aria-label="Printed page: one-page résumé">
+        <rect class="ring" x="1056" y="352" width="110" height="106" rx="16"/>
+        <path d="M1076 450l8-80h66l8 80z" class="paper" stroke="#12313A" stroke-width="3" stroke-linejoin="round"/><path d="M1094 386h36" stroke="#12313A" stroke-width="5" stroke-linecap="round"/><path d="M1092 402h44M1091 414h46M1090 426h34" stroke="#8AA3A8" stroke-width="3.5" stroke-linecap="round"/>
+        <g class="tag"><rect x="1060" y="462" width="102" height="26" rx="13"/><text x="1111" y="480" text-anchor="middle">Résumé</text></g>
+      </g>
+      <!-- matcha + yarn -->
+      <g transform="translate(18 0)"><path d="M840 404h44l-5 40h-34z" class="surf" stroke="#12313A" stroke-width="3" stroke-linejoin="round"/><ellipse cx="862" cy="404" rx="22" ry="6" fill="#8DBF5A" stroke="#12313A" stroke-width="3"/><path d="M856 392c-4-8 6-10 2-18M868 392c-4-8 6-10 2-18" class="inks" style="stroke-width:2.5;opacity:.5"/></g>
+      <g><circle cx="604" cy="530" r="20" class="accentf" stroke="#12313A" stroke-width="3"/><path d="M588 522c10 6 22 6 32 0M590 536c8 5 20 5 28-2M604 510v40" class="inks" style="stroke-width:2.5"/><path d="M622 540c30 14 60-10 96 6" class="inks" style="stroke:var(--accent)"/></g>
+      <g id="catMochi"></g>
+    </svg>
+    <div class="bubble" id="bubble" aria-live="polite"></div>
+  </div>
+
+  <div class="pick"><span class="mono">Pick something up</span>
+    <div class="chips">
+      <button class="chip" data-open="systems">Laptop<span>Projects</span></button>
+      <button class="chip" data-open="experience">Whiteboard<span>Experience</span></button>
+      <button class="chip" data-open="cases">Trophy shelf<span>Case comps</span></button>
+      <button class="chip" data-open="debate">Microphone<span>Debate</span></button>
+      <button class="chip" data-open="about">Notebook<span>About</span></button>
+      <button class="chip" data-open="resume">Printed page<span>Résumé</span></button>
+      <button class="chip" data-open="contact">Phone<span>Contact</span></button>
+    </div>
+  </div>
+</div>
+
+<section class="block view" id="changed"><div class="wrap">
+  <div class="head"><h2>Impact</h2><p>The four kinds of work she does, and what she did in each.</p></div>
+  <div class="grid2">
+    <article class="card"><div class="lane"><div class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12l4-4 4 3 3-3 7 6-3 4-4-3-3 3-4-4z"/><path d="M11 11l3 3"/></svg></div><h3>Partnerships and external relations</h3><span class="mono">Ateneo MEA</span></div>
+      <ul class="pts"><li>Manages <b class="n">₱1M+ in annual partnerships</b> across 5 major projects, from the first pitch to the signed agreement.</li><li>Negotiates contracts, deliverables, and partner obligations for every major MEA project.</li><li>Headed sponsorship for the Networking Exposition, bringing <b class="n">21 companies</b> in banking, consumer goods, and telecommunications to campus, and for MEAmore, with <b class="n">10 companies</b>.</li><li>Renewed partnerships with <b class="n">6 returning companies</b> by following through on every commitment.</li></ul></article>
+    <article class="card"><div class="lane"><div class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="7" r="3.2"/><path d="M5 20c0-4 3-6.5 7-6.5s7 2.5 7 6.5"/><path d="M3.5 12.5a2.5 2.5 0 1 1 3-3.5M20.5 12.5a2.5 2.5 0 1 0-3-3.5"/></svg></div><h3>Leadership</h3><span class="mono">MEA · Celadon · ASHS Sanggunian</span></div>
+      <ul class="pts"><li>Led a council of <b class="n">35 student organizations</b> as Vice President, with 200+ organization officers and 33 core officers, and spoke for them to the school administration.</li><li>Directs and mentors a team of <b class="n">7 associates</b>, delegating sponsor outreach and coaching them through partner talks.</li><li>Led <b class="n">40+ members</b> across 6 committees through Celadon's biggest recruitment event of the year.</li><li>Led <b class="n">35 officers</b> as Human Resources Undersecretary, looking after officer welfare through regular consultations.</li></ul></article>
+    <article class="card"><div class="lane"><div class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="16" height="17" rx="2.5"/><path d="M8 2v4M16 2v4M8 11l2 2 3-3.5M8 17h8"/></svg></div><h3>Project management</h3><span class="mono">Celadon · ASHS Sanggunian</span></div>
+      <ul class="pts"><li>Planned and ran Recruitment Week and Welcome Week end to end, bringing in <b class="n">400+ new</b> and 300+ returning members.</li><li>Directed data collection and validation for <b class="n">850+ applicants</b>.</li><li>Ran every operations process for a <b class="n">2,300+ order</b> Rose Sale, from the pre-order website to pick-ups, deliveries, and onsite selling.</li><li>Managed TuPAD, a fundraising concert for <b class="n">30+ families</b> in Zambales.</li></ul></article>
+    <article class="card"><div class="lane"><div class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M2 20h20M9 9l-2 1.5L9 12M15 9l2 1.5L15 12"/></svg></div><h3>Systems and operations</h3><span class="mono">Ritual Matcha Co.</span></div>
+      <ul class="pts"><li>Built the Order Desk, which turns chat orders into ready-to-send drafts and saves the wholesale team about <b class="n">2 hours a day</b>.</li><li>Leading the move of <b class="n">4 core workflows</b> in inventory and purchasing from spreadsheets to a cloud web app.</li><li>Maps how work actually flows, and caught a data error that overstated demand by <b class="n">~35%</b>.</li></ul></article>
+  </div>
+</div></section>
+
+<section class="block view" id="experience"><div class="wrap">
+  <div class="head"><h2>Experience</h2><p>Titles, dates, and one line each. The detail is in Impact above.</p></div>
+  <div class="tl">
+    <article class="role"><div class="side"><div class="org">Ateneo Management Engineering Association</div><span class="mono">Ateneo de Manila</span></div>
+      <div class="jobs"><div class="job"><h3>Associate Vice President, External Relations</h3><span class="mono">Jun 2026 to present</span><p>Runs the organization's corporate partnerships and a team of 7 associates.</p></div><div class="job"><h3>External Relations Head, Networking Exposition and MEAmore</h3><span class="mono">Oct 2025 to May 2026</span><p>Headed sponsorship for two of the organization's flagship projects.</p></div><div class="job"><h3>Junior Associate, External Relations</h3><span class="mono">Sep 2025 to May 2026</span><p>Coordinated partnership agreements and served as the line between partners and MEA's departments.</p></div><div class="job"><h3>Core member, STEPS and MentorME</h3><span class="mono">2025 to 2026</span><p>Helped design an onboarding program for new students and ran the alumni mentorship program.</p></div></div></article>
+    <article class="role"><div class="side"><div class="org">Ritual Matcha Co.</div><span class="mono">San Juan City · Internship</span></div>
+      <div class="jobs"><div class="job"><h3>Sales Operations Consultant</h3><span class="mono">Jun 2026 to present</span><p>Builds the order and inventory systems that the sales and warehouse teams work in every day.</p></div></div></article>
+    <article class="role"><div class="side"><div class="org">Ateneo Celadon</div><span class="mono">Ateneo de Manila</span></div>
+      <div class="jobs"><div class="job"><h3>Project Manager, Recruitment Week and Welcome Week '26</h3><span class="mono">Jun 2026 to present</span><p>Leads 6 committees through the organization's main recruitment and onboarding event.</p></div><div class="job"><h3>Operations Head, Rose Sale '26</h3><span class="mono">Oct 2025 to Jun 2026</span><p>Ran every operations process for a 2,300+ order sale.</p></div><div class="job"><h3>Recruitment and Secretariat Core Member, Jade Business Summit '27</h3><span class="mono">Jul 2026 to present</span></div></div></article>
+    <article class="role"><div class="side"><div class="org">Ateneo Blue Consulting Group</div><span class="mono">Ateneo de Manila</span></div>
+      <div class="jobs"><div class="job"><h3>Associate Consultant, Engagement Team</h3><span class="mono">Oct 2025 to May 2026</span><p>Served on the engagement team and the client engagement committee.</p></div></div></article>
+    <article class="role"><div class="side"><div class="org">ASHS Sanggunian, Council of Student Organizations</div><span class="mono">Ateneo de Manila SHS</span></div>
+      <div class="jobs"><div class="job"><h3>Vice President</h3><span class="mono">Jun 2024 to May 2025</span><p>Led a council of 35 organizations and managed its fundraising concert.</p></div><div class="job"><h3>Undersecretary</h3><span class="mono">Aug 2023 to May 2024</span><p>Led 35 officers in the Human Resources department.</p></div></div></article>
+    <article class="card"><h3>Also</h3>
+      <div class="also">
+        <div><b>Ateneo Student Judicial Court</b><span>Member, Department of Financial Administration. 2025 to 2026.</span></div>
+        <div><b>ASHS Fair Committee</b><span>Special Events: coordinated the 2025 fair's concert artist. 2024 to 2025.</span></div>
+        <div><b>ASHS Debate Org and Varsity</b><span>Processing Officer: wrote the organization's project proposals. 2023 to 2024.</span></div>
+        <div><b>Saint Jude Catholic School Student Council</b><span>Public Relations Officer: ran partnerships with outside organizations. 2022 to 2023.</span></div>
+      </div></article>
+    <div class="about" id="about">
+      <article class="card"><h3>Education</h3>
+        <dl class="kv"><dt>2025 to 2029</dt><dd><b>Ateneo de Manila University</b><br>BS Management Engineering. QPI <b class="n">3.66 / 4.0</b>. Consistent Dean's Lister and Academic Scholar. Director's List, top 150 ACET examinees nationwide.</dd><dt>2023 to 2025</dt><dd><b>Ateneo de Manila Senior High School</b><br>STEM strand. Gold Medal for First Honors. QPI <b class="n">3.93 / 4.0</b>, ranked 4th in STEM.</dd></dl></article>
+      <article class="card"><h3>Skills and certificates</h3>
+        <dl class="kv"><dt>Strengths</dt><dd>Partnership management, negotiation, project and operations management, team leadership</dd><dt>Tools</dt><dd>Google Apps Script, advanced Google Sheets, Shopify, process automation, data management</dd><dt>Languages</dt><dd>English (native), Filipino (professional working), Mandarin Chinese (limited)</dd><dt>Certificates</dt><dd>McKinsey Forward Program, McKinsey &amp; Company (2026). Accounting 1, University of Lausanne (2025).</dd></dl></article>
+    </div>
+  </div>
+</div></section>
+
+<section class="block view" id="systems"><div class="wrap">
+  <div class="head"><h2>Projects</h2><p>Systems she built, and the manual process each one replaced.</p></div>
+  <div class="ba" style="margin-bottom:16px">
+    <div class="row mono"><span>Process</span><span>Before</span><span></span><span>After</span></div>
+    <div class="row"><div class="what">Wholesale order encoding<small>Ritual Matcha</small></div><div class="from">chat orders re-typed by hand</div><div class="arr">→</div><div class="to">auto-drafted in Shopify, ~2 hrs saved a day</div></div>
+    <div class="row"><div class="what">Inventory and purchasing<small>Ritual Matcha</small></div><div class="from">Google Sheets + Apps Script</div><div class="arr">→</div><div class="to">cloud web app, 4 workflows moving over</div></div>
+    <div class="row"><div class="what">Demand reporting<small>Ritual Matcha</small></div><div class="from">demand overstated by ~35%</div><div class="arr">→</div><div class="to">error found and corrected</div></div>
+    <div class="row"><div class="what">Rose Sale ordering<small>Ateneo Celadon</small></div><div class="from">manual encoding</div><div class="arr">→</div><div class="to">Apps Script system, 2,300+ orders</div></div>
+    <div class="row"><div class="what">Sponsor tracking<small>Ateneo MEA</small></div><div class="from">manual follow-ups</div><div class="arr">→</div><div class="to">automated dispatch for 21 associates</div></div>
+  </div>
+  <div class="pgrid">
+    <article class="card pj"><figure class="shot"><img src="orderdesk.jpg" alt="The Order Desk's payments screen, with customer details blurred" width="1500" height="802" loading="lazy"><figcaption>The payments screen. Customer details are blurred.</figcaption></figure>
+      <h3>Order Desk</h3><div class="meta mono"><span>Ritual Matcha</span><span>2026</span></div>
+      <p class="d">Wholesale customers order through Viber. The Order Desk reads those chats and turns them into Shopify draft orders, so nobody re-types them. It also tracks which orders are still waiting for payment.</p>
+      <ul class="pts"><li>Used by the whole sales team, with orders from <b class="n">300+ customers</b>.</li><li>Matches each chat order against <b class="n">1,000+ Shopify accounts</b> before drafting it.</li><li>Saves the wholesale team about <b class="n">2 hours a day</b>.</li></ul>
+      <div class="pills"><span class="pill">Shopify</span><span class="pill">Viber</span><span class="pill">Parsing and reconciliation</span></div></article>
+    <article class="card pj"><figure class="shot"><img src="crm.jpg" alt="The CRM's leads board, with café and owner names blurred" width="1500" height="801" loading="lazy"><figcaption>The leads board. Café and owner names are blurred.</figcaption></figure>
+      <h3>Sales CRM dashboard</h3><div class="meta mono"><span>Ritual Matcha</span><span>2026</span></div>
+      <p class="d">The sales department's CRM. It shows every lead and client by follow-up health, so the team knows who to get in touch with next and keeps customer relationships from going cold.</p>
+      <ul class="pts"><li>Moves each café through a <b class="n">5-stage pipeline</b>, from qualifying to closing.</li><li>Flags overdue follow-ups and leads with no first touch yet.</li><li>Saved views and filters by owner, stage, source, and tag.</li></ul>
+      <div class="pills"><span class="pill">CRM</span><span class="pill">Sales pipeline</span><span class="pill">Client relationships</span></div></article>
+    <article class="card pj"><figure class="shot"><img src="rosesale.jpg" alt="An onsite encoder tab from the Rose Sale ordering system" width="1500" height="801" loading="lazy"><figcaption>One of the onsite encoder tabs.</figcaption></figure>
+      <h3>Rose Sale onsite ordering system</h3><div class="meta mono"><span>Ateneo Celadon</span><span>2025 to 2026</span></div>
+      <p class="d">The onsite ordering system for Celadon's Rose Sale: encoder sheets for walk-in orders, bundles, and flower picks that feed straight into the order summary, inventory, and pick-ups.</p>
+      <ul class="pts"><li>Handled <b class="n">2,300+ orders</b>.</li></ul>
+      <div class="pills"><span class="pill">Google Apps Script</span><span class="pill">Google Sheets</span></div></article>
+    <article class="card pj"><figure class="shot"><img src="celacart.jpg" alt="CelaCart's items page, with org room materials sorted by category and storage location" width="1500" height="801" loading="lazy"><figcaption>The items page.</figcaption></figure>
+      <h3>CelaCart inventory system</h3><div class="meta mono"><span>Ateneo Celadon</span><span>2026</span></div>
+      <p class="d">An inventory app for Celadon's org room. Members search every available material, borrow or use items under their project or department, and officers see what's out, what's overdue, and the full request history.</p>
+      <ul class="pts"><li>Used by an organization of <b class="n">850+ members</b> to track every material in the org room.</li></ul>
+      <div class="pills"><span class="pill">Web app</span><span class="pill">Google Apps Script</span><span class="pill">Inventory tracking</span></div></article>
+    <article class="card pj"><h3>Systems migration from Sheets to Cloudflare</h3><div class="meta mono"><span>Ritual Matcha</span><span>2026, in progress</span></div>
+      <p class="d">She is leading the move of inventory and purchasing off Google Sheets and Apps Script onto a cloud web app, taking 4 core workflows from specification to delivery.</p>
+      <ul class="pts"><li>Barcode-scanner dispensing flow for warehouse staff.</li><li>Purchaser portal that groups staff requests into supplier purchase orders.</li><li>Supply and demand dashboard, which caught a data error overstating demand by <b class="n">~35%</b>.</li></ul>
+      <div class="pills"><span class="pill">Cloudflare Workers</span><span class="pill">PostgreSQL</span><span class="pill live">Migration lead</span></div></article>
+    <article class="card pj"><h3>Partner data dispatch system</h3><div class="meta mono"><span>Ateneo MEA</span><span>2026</span></div>
+      <p class="d">A system that routes partner and outreach data to the right project automatically, so each team gets what it needs without manual follow-ups.</p>
+      <ul class="pts"><li>Used by <b class="n">21 associates</b> across 10 projects.</li></ul>
+      <div class="pills"><span class="pill">Google Apps Script</span><span class="pill">Google Sheets</span></div></article>
+  </div>
+</div></section>
+
+<section class="block view" id="cases"><div class="wrap">
+  <div class="head"><h2>Awards</h2><p>Case competitions and debate.</p></div>
+  <div class="grid2">
+    <article class="card win wide"><div class="medal">2nd</div><div><div class="result">1st Runner-Up</div><h3>Fusion: The Glocal Case Competition</h3><div class="meta mono"><span>DLSU Junior Entrepreneurs' Marketing Association</span><span>2026</span></div><p class="d">A marketing case on the brand Kandama. No one on her team of four Management Engineering students had taken a marketing class. They spent the week arguing over strategy and rebuilding slides, and walked out with second place.</p><p class="d"><a href="https://lnkd.in/p/grG5wjN9" target="_blank" rel="noopener">Read her post about it on LinkedIn</a></p></div></article>
+    <article class="card win"><div class="medal">7th</div><div><div class="result">7th Best Senior Speaker in Asia</div><h3>Singapore International Schools' Debating Championships</h3><div class="meta mono"><span>UWC South East Asia, Singapore</span><span>Nov 2024</span></div><p class="d">Represented the Philippines at the first SISDC, among <b class="n">259 debaters</b> from 12 Asian countries.</p></div></article>
+    <article class="card win"><div class="medal">1st</div><div><div class="result">Overall Best High School Speaker</div><h3>Baguio Debate Cup</h3><div class="meta mono"><span>Baguio City</span><span>Jan 2025</span></div><p class="d">Also <b class="n">3rd Best Open Speaker</b>, 3rd Open Break, and Open Quarterfinalist, competing against university debaters.</p></div></article>
+  </div>
+  <div class="head sub2" id="debate"><h3>Debate record</h3><p>Seven tournaments, six breaks, and four speaker awards.</p></div>
+  <div class="scroll" style="margin-top:0"><table class="dt">
+    <thead><tr><th>Tournament</th><th>Finish</th><th>Break</th><th>Speaker award</th><th>Date</th></tr></thead>
+    <tbody>
+      <tr><td>Indo-Pacific Pre-ABP 2025</td><td><span class="tagr p">Open Semifinalist</span></td><td>8th Open Break</td><td>9th Best Novice Speaker</td><td class="when">Jul 2025</td></tr>
+      <tr><td>Philippine Schools Debating Championship 2025</td><td><span class="tagr p">Open Octofinalist</span></td><td>19th Open Break</td><td></td><td class="when">Jan 2025</td></tr>
+      <tr><td>Baguio Debate Cup 2025</td><td><span class="tagr p">Open Quarterfinalist</span></td><td>3rd Open Break</td><td>Overall Best High School Speaker, 3rd Best Open Speaker</td><td class="when">Jan 2025</td></tr>
+      <tr><td>Diliman Schools British Parliamentary 2024</td><td></td><td>14th Open Break</td><td></td><td class="when">Dec 2024</td></tr>
+      <tr><td>Singapore International Schools' Debating Championships 2024</td><td></td><td></td><td>7th Best Senior Speaker</td><td class="when">Nov 2024</td></tr>
+      <tr><td>Oragon Debate Cup 2025</td><td><span class="tagr">High School Grand Finalist</span></td><td>4th High School Break</td><td></td><td class="when">Oct 2024</td></tr>
+      <tr><td>National Asians High School Debate Championship 2024</td><td><span class="tagr p">Novice Semifinalist</span></td><td>2nd Novice Break</td><td></td><td class="when">Aug 2024</td></tr>
+    </tbody></table></div>
+</div></section>
+
+<section class="block view" id="resume"><div class="wrap">
+  <div class="head"><h2>Résumé</h2><p>One page: school, work, and wins.</p></div>
+  <div class="rbar"><p id="dlNote" class="dlNote">The full page is below.</p><button class="btn primary" data-dl hidden>Download PDF</button></div>
+  <div class="sheet"><img src="resume.png" alt="Arianne Co's one-page résumé" width="1105" height="1430" loading="lazy"></div>
+</div></section>
+
+<section class="block view" id="contact"><div class="wrap">
+  <div class="head"><h2>Hiring an intern?</h2><p>Email is the fastest way to reach her.</p></div>
+  <div class="contact">
+    <div class="line"><div><span class="mono">Email</span><div class="v">arianne.gabrielle.co@student.ateneo.edu</div></div><button class="btn sm" data-copy="arianne.gabrielle.co@student.ateneo.edu">Copy</button></div>
+    <div class="line"><div><span class="mono">LinkedIn</span><div class="v">linkedin.com/in/arianne-co</div></div><a class="btn sm" href="https://www.linkedin.com/in/arianne-co" target="_blank" rel="noopener">Open</a></div>
+  </div>
+</div></section>
+
+</main>
+
+<footer><div class="wrap">© 2026 Arianne Gabrielle W. Co · Quezon City, Philippines</div></footer>
+
+<script>
+(function(){
+  var INK='#12313A';
+  var CATS={
+    mochi:{name:'Mochi',role:'Front desk. Greets visitors and points at things.',fur:'#F2A64B',belly:'#FFF1DC',ear:'#F7B7B0',pat:'tabby',stripe:'#C9782A'},
+    abacus:{name:'Abacus',role:'Guards the laptop. Counts orders, never loses one.',fur:'#8E9AA6',belly:'#E8EDF0',ear:'#F2B8C2',pat:'tabby',stripe:'#5F6C78'},
+    rebuttal:{name:'Rebuttal',role:'Sits by the microphone. Always has a second point.',fur:'#2B2F3A',belly:'#FFFFFF',ear:'#F2A0B0',pat:'tux',bow:true},
+    pitch:{name:'Pitch',role:'Naps on the trophy shelf between case competitions.',fur:'#FBF6EC',belly:'#FFFFFF',ear:'#F7B7B0',pat:'calico',stripe:'#E08A3C',stripe2:'#4A4038'}
+  };
+  function face(c,cy,sleep){
+    var dark=c.pat==='tux', line=dark?'#C9CED8':INK;
+    var s='<ellipse cx="0" cy="'+cy+'" rx="42" ry="36" fill="'+c.fur+'"/>';
+    if(c.pat==='tux') s+='<path d="M0 '+(cy-16)+'Q-7 '+(cy+2)+' -24 '+(cy+10)+'Q-22 '+(cy+33)+' 0 '+(cy+35)+'Q22 '+(cy+33)+' 24 '+(cy+10)+'Q7 '+(cy+2)+' 0 '+(cy-16)+'z" fill="#fff"/>';
+    if(c.pat==='tabby') s+='<path d="M-10 '+(cy-34)+'v10M0 '+(cy-35)+'v13M10 '+(cy-34)+'v10" stroke="'+c.stripe+'" stroke-width="5" stroke-linecap="round"/>';
+    if(c.pat==='calico') s+='<path d="M-41 '+(cy-6)+'Q-38 '+(cy-33)+' -8 '+(cy-35)+'Q-14 '+(cy-12)+' -41 '+(cy-6)+'z" fill="'+c.stripe+'"/><path d="M41 '+(cy-6)+'Q38 '+(cy-33)+' 8 '+(cy-35)+'Q14 '+(cy-12)+' 41 '+(cy-6)+'z" fill="'+c.stripe2+'"/>';
+    s+='<ellipse cx="0" cy="'+cy+'" rx="42" ry="36" fill="none" stroke="'+INK+'" stroke-width="3"/>';
+    if(sleep){ s+='<path d="M-25 '+(cy+3)+'q8 7 16 0M9 '+(cy+3)+'q8 7 16 0" fill="none" stroke="'+INK+'" stroke-width="3" stroke-linecap="round"/>'; }
+    else { s+='<g class="eye">';
+      [-17,17].forEach(function(x){
+        if(dark) s+='<circle cx="'+x+'" cy="'+(cy+2)+'" r="10" fill="#FFD75E"/>';
+        s+='<ellipse cx="'+x+'" cy="'+(cy+2)+'" rx="'+(dark?7:8.5)+'" ry="'+(dark?8.5:9.5)+'" fill="'+INK+'"/><circle cx="'+(x-2.8)+'" cy="'+(cy-1.5)+'" r="3.1" fill="#fff"/><circle cx="'+(x+3)+'" cy="'+(cy+5.5)+'" r="1.5" fill="#fff"/>';
+      }); s+='</g>'; }
+    s+='<path d="M-3.5 '+(cy+12)+'h7l-3.5 4z" fill="#F0708A" stroke="#F0708A" stroke-width="1.5" stroke-linejoin="round"/>';
+    s+='<path d="M0 '+(cy+17)+'q-4.5 6-10 1.5M0 '+(cy+17)+'q4.5 6 10 1.5" fill="none" stroke="'+(dark?'#8A8F9A':INK)+'" stroke-width="2.2" stroke-linecap="round"/>';
+    s+='<path d="M-33 '+(cy+9)+'h-13M-32 '+(cy+15)+'l-12 4M33 '+(cy+9)+'h13M32 '+(cy+15)+'l12 4" stroke="'+line+'" stroke-width="1.6" stroke-linecap="round" opacity=".55"/>';
+    s+='<ellipse cx="-28" cy="'+(cy+15)+'" rx="7.5" ry="4.5" fill="#FF8FA6" opacity=".6"/><ellipse cx="28" cy="'+(cy+15)+'" rx="7.5" ry="4.5" fill="#FF8FA6" opacity=".6"/>';
+    return s;
+  }
+  function ears(c,cy){
+    var o='';
+    [1,-1].forEach(function(k){
+      o+='<path d="M'+(-37*k)+' '+(cy-10)+'L'+(-34*k)+' '+(cy-47)+'L'+(-8*k)+' '+(cy-30)+'z" fill="'+c.fur+'" stroke="'+INK+'" stroke-width="3" stroke-linejoin="round"/>'+
+         '<path d="M'+(-31*k)+' '+(cy-22)+'L'+(-29.5*k)+' '+(cy-38)+'L'+(-17*k)+' '+(cy-30)+'z" fill="'+c.ear+'" stroke="'+c.ear+'" stroke-width="3" stroke-linejoin="round"/>';
+    });
+    return o;
+  }
+  function sit(c,flip){
+    var k=flip?-1:1, t='M'+(22*k)+' -12c'+(40*k)+' 6 '+(46*k)+'-34 '+(28*k)+'-52';
+    var o='<path class="tail" d="'+t+'" fill="none" stroke="'+INK+'" stroke-width="17" stroke-linecap="round"/><path class="tail" d="'+t+'" fill="none" stroke="'+c.fur+'" stroke-width="11" stroke-linecap="round"/>'+
+      '<ellipse cx="0" cy="-30" rx="29" ry="31" fill="'+c.fur+'" stroke="'+INK+'" stroke-width="3"/>'+
+      '<ellipse cx="0" cy="-24" rx="15" ry="19" fill="'+c.belly+'"/>'+
+      '<ellipse cx="-11" cy="-5" rx="10" ry="7" fill="'+c.belly+'" stroke="'+INK+'" stroke-width="3"/><ellipse cx="11" cy="-5" rx="10" ry="7" fill="'+c.belly+'" stroke="'+INK+'" stroke-width="3"/>'+
+      ears(c,-82)+face(c,-82);
+    if(c.bow) o+='<path d="M0 -45l-13-7v14zM0 -45l13-7v14z" fill="#D9486A" stroke="'+INK+'" stroke-width="2.5" stroke-linejoin="round"/><circle cx="0" cy="-45" r="4" fill="#D9486A" stroke="'+INK+'" stroke-width="2.5"/>';
+    else o+='<path d="M-19 -49q19 9 38 0" fill="none" stroke="#D9486A" stroke-width="5" stroke-linecap="round"/><circle cx="0" cy="-42" r="5" fill="#F4C04E" stroke="'+INK+'" stroke-width="2"/>';
+    return o;
+  }
+  function loaf(c){
+    return '<path class="tail" d="M50 -10c24 0 28-16 18-28" fill="none" stroke="'+INK+'" stroke-width="15" stroke-linecap="round"/><path class="tail" d="M50 -10c24 0 28-16 18-28" fill="none" stroke="'+c.stripe+'" stroke-width="9" stroke-linecap="round"/>'+
+      '<path d="M-52 0q-8-42 42-44h28q44 2 38 44z" fill="'+c.fur+'" stroke="'+INK+'" stroke-width="3" stroke-linejoin="round"/><path d="M18 -42q22 4 30 21q-20 2-30-21z" fill="'+c.stripe+'"/>'+
+      '<g transform="translate(-34 34) scale(.8)">'+ears(c,-82)+face(c,-82,true)+'</g>';
+  }
+  function peek(c){
+    return '<g transform="scale(.86)">'+ears(c,-34)+face(c,-34)+'</g><ellipse cx="-24" cy="-1" rx="11" ry="7.5" fill="'+c.belly+'" stroke="'+INK+'" stroke-width="3"/><ellipse cx="24" cy="-1" rx="11" ry="7.5" fill="'+c.belly+'" stroke="'+INK+'" stroke-width="3"/>';
+  }
+  function place(id,key,inner,x,y,s){
+    var g=document.getElementById(id);
+    g.setAttribute('class','cat'); g.setAttribute('data-cat',key); g.setAttribute('tabindex','0'); g.setAttribute('role','button');
+    g.setAttribute('aria-label',CATS[key].name+' the cat');
+    g.innerHTML='<g transform="translate('+x+' '+y+') scale('+s+')"><g class="hopper">'+inner+'</g></g>';
+  }
+  place('catMochi','mochi',sit(CATS.mochi),780,452,1.2);
+  place('catAbacus','abacus',peek(CATS.abacus),518,288,1);
+  place('catRebuttal','rebuttal',sit(CATS.rebuttal,true),1020,446,.9);
+  place('catPitch','pitch',loaf(CATS.pitch),1078,214,.95);
+  function mini(key){return '<svg viewBox="-52 -134 104 138" aria-hidden="true">'+sit(CATS[key])+'</svg>';}
+
+  /* Manila clock + greeting */
+  function manila(){return new Date(new Date().toLocaleString('en-US',{timeZone:'Asia/Manila'}));}
+  function tick(){var d=manila();document.getElementById('clock').textContent='Manila '+d.toLocaleTimeString('en-US',{hour:'2-digit',minute:'2-digit'});}
+  tick(); setInterval(tick,20000);
+  var h=manila().getHours(), greet=h<12?'Good morning':h<18?'Good afternoon':'Good evening';
+  var bubble=document.getElementById('bubble');
+  var HOME='<b>'+greet+'! I\'m Mochi.</b> This is Arianne\'s desk. Click anything on it.';
+  function say(t){bubble.innerHTML=t;}
+  say(HOME);
+
+  var SEC={
+    systems:{cat:'abacus',hint:'The laptop. Abacus keeps the systems Arianne built in there.',line:'Abacus says: these are the systems Arianne built. I counted every order.'},
+    experience:{cat:'mochi',hint:'The whiteboard. Her job and the three orgs she has led in.',line:'Mochi says: here is where she has worked and what she ran.'},
+    cases:{cat:'pitch',hint:'The trophy shelf. Pitch is asleep on the case competition wins.',line:'Pitch says: case competitions. Wake me for the finals.'},
+    debate:{cat:'rebuttal',hint:'The microphone. Rebuttal will tell you about the speaker awards.',line:'Rebuttal says: point of information. She was 7th best speaker in Asia.'},
+    about:{cat:'mochi',hint:'The notebook. Her school, skills, and certificates.',line:'Mochi says: the short version of Arianne.'},
+    resume:{cat:'abacus',hint:'A printed page. Her one-page résumé, ready to read or save.',line:'Abacus says: everything on one page. I checked the margins.'},
+    contact:{cat:'mochi',hint:'The phone. How to reach her.',line:'Mochi says: email is fastest. She answers.'}
+  };
+  var MEOW={mochi:['Mrrp! Try the laptop first.','That tickles. The trophy shelf is up there.','Purr. Arianne is in class. I am in charge.'],
+    abacus:['2,300 orders. I counted twice.','Please do not touch the keyboard. That is my job.','Meow. The spreadsheet is gone. Good.'],
+    rebuttal:['Point of information!','I have three arguments and a nap scheduled.','Motion: this house would hire Arianne.'],
+    pitch:['Zzz... five more slides...','Mrow. Silver is a good colour on me.','I only wake up for semifinals.']};
+
+  var tabs=document.querySelectorAll('.nav a'), marks=['desk','experience','systems','cases','resume'];
+  var calm=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function open(id){var el=document.getElementById(id); if(!el) return; el.scrollIntoView({behavior:calm?'auto':'smooth',block:'start'});}
+  function spy(){
+    var cur='desk', line=(document.querySelector('.top').offsetHeight||70)+40;
+    marks.forEach(function(id){var el=document.getElementById(id); if(el&&el.getBoundingClientRect().top<=line) cur=id;});
+    Array.prototype.forEach.call(tabs,function(a){ if(a.getAttribute('href')==='#'+cur) a.setAttribute('aria-current','page'); else a.removeAttribute('aria-current'); });
+  }
+  spy(); window.addEventListener('scroll',spy,{passive:true}); window.addEventListener('resize',spy);
+
+  document.addEventListener('click',function(e){
+    var c=e.target.closest('[data-copy]');
+    if(c){var t=c.getAttribute('data-copy'),done=function(){var o=c.textContent;c.textContent='Copied';setTimeout(function(){c.textContent=o;},1400);};
+      try{navigator.clipboard.writeText(t).then(done,function(){sel(c);});}catch(err){sel(c);} return;}
+    var d=e.target.closest('[data-dl]'); if(d){ if(dl) savePdf(d); return; }
+    var o=e.target.closest('[data-open]'); if(o){open(o.getAttribute('data-open'));return;}
+    var h=e.target.closest('a[href^="#"]'); if(h){e.preventDefault();open(h.getAttribute('href').slice(1));return;}
+    var k=e.target.closest('[data-cat]'); if(k) meow(k);
+  });
+  function sel(btn){var v=btn.parentNode.querySelector('.v'); if(!v) return; var r=document.createRange(); r.selectNodeContents(v); var s=getSelection(); s.removeAllRanges(); s.addRange(r);}
+  var dl=null, dlChecked=false;
+  function showDl(root){Array.prototype.forEach.call(root.querySelectorAll('[data-dl]'),function(b){b.hidden=!dl;});
+    Array.prototype.forEach.call(root.querySelectorAll('#dlNote,.dlNote'),function(n){n.textContent=dl?'The full page is below. You can also save the PDF.':(dlChecked?'The full page is below. For the PDF, email her.':'The full page is below.');});}
+  (window.claude&&window.claude.use?window.claude.use('downloads'):Promise.resolve(null)).then(function(d){dl=d;dlChecked=true;showDl(document);},function(){dlChecked=true;showDl(document);});
+  function savePdf(btn){var o=btn.textContent;btn.textContent='Preparing…';
+    fetch('CO_Resume.pdf').then(function(r){if(!r.ok) throw new Error('missing');return r.blob();}).then(function(b){return dl.save({filename:'Arianne-Co-Resume.pdf',data:b});})
+    .then(function(){btn.textContent='Saved';},function(e){btn.textContent=(e&&e.code==='declined')?o:'Could not save';}).then(function(){setTimeout(function(){btn.textContent=o;},1800);});}
+  var mi={};
+  function meow(g){var k=g.getAttribute('data-cat'); mi[k]=((mi[k]||0)+1)%MEOW[k].length; say('<b>'+CATS[k].name+':</b> '+MEOW[k][mi[k]]);
+    var hp=g.querySelector('.hopper'); hp.classList.remove('hop'); void hp.getBBox(); hp.classList.add('hop');}
+  document.addEventListener('keydown',function(e){
+    if(e.key!=='Enter'&&e.key!==' ') return; var t=e.target;
+    if(t.matches&&t.matches('g[data-open]')){e.preventDefault();open(t.getAttribute('data-open'));}
+    else if(t.matches&&t.matches('g[data-cat]')){e.preventDefault();meow(t);}
+  });
+  Array.prototype.forEach.call(document.querySelectorAll('#sceneSvg .hot'),function(g){
+    var id=g.getAttribute('data-open');
+    function on(){say('<b>'+CATS[SEC[id].cat].name+':</b> '+SEC[id].hint);} function off(){say(HOME);}
+    g.addEventListener('mouseenter',on); g.addEventListener('focus',on); g.addEventListener('mouseleave',off); g.addEventListener('blur',off);
+  });
+})();
+</script>
+
+</body></html>
