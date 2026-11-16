@@ -664,7 +664,7 @@ section.block{padding-block:64px 0}
   var dl=null, dlChecked=false;
   function showDl(root){Array.prototype.forEach.call(root.querySelectorAll('[data-dl]'),function(b){b.hidden=!dl;});
     Array.prototype.forEach.call(root.querySelectorAll('#dlNote,.dlNote'),function(n){n.textContent=dl?'The full page is below. You can also save the PDF.':(dlChecked?'The full page is below. For the PDF, email her.':'The full page is below.');});}
-  (window.claude&&window.claude.use?window.claude.use('downloads'):Promise.resolve(null)).then(function(d){dl=d;dlChecked=true;showDl(document);},function(){dlChecked=true;showDl(document);});
+  (window.claude&&window.claude.use?window.claude.use('downloads'):Promise.resolve({save:function(o){var a=document.createElement('a');a.href=URL.createObjectURL(o.data);a.download=o.filename;document.body.appendChild(a);a.click();a.remove();return Promise.resolve();}})).then(function(d){dl=d;dlChecked=true;showDl(document);},function(){dlChecked=true;showDl(document);});
   function savePdf(btn){var o=btn.textContent;btn.textContent='Preparing…';
     fetch('CO_Resume.pdf').then(function(r){if(!r.ok) throw new Error('missing');return r.blob();}).then(function(b){return dl.save({filename:'Arianne-Co-Resume.pdf',data:b});})
     .then(function(){btn.textContent='Saved';},function(e){btn.textContent=(e&&e.code==='declined')?o:'Could not save';}).then(function(){setTimeout(function(){btn.textContent=o;},1800);});}
